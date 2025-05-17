@@ -5,6 +5,7 @@ class Player:
     def __init__(self, name):
         self.name = name
         self.hand = Hand()
+        self.bust = False
 
     @property
     def name(self):
@@ -16,7 +17,6 @@ class Player:
 
     def take_turn(self, my_deck):
         turn_over = False
-        bust = False
 
         while not turn_over:
             print(f'Your hand: {self.hand}')
@@ -27,24 +27,7 @@ class Player:
                 self.hand.add_card(my_deck.deal())
                 if self.hand.value > 21:
                     turn_over = True
-                    bust = True
+                    self.bust = True
             else:
                 turn_over = True
-
-        return bust
-
-    def ai_turn(self, my_deck, player):
-        turn_over = False
-        bust = False
-
-        while not turn_over:
-            if self.hand.value <17:
-                self.hand.add_card(my_deck.deal())
-            else:
-                turn_over = True
-
-            if self.hand.value > 21:
-                bust = True
-
-        return bust
 

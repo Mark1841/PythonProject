@@ -18,7 +18,7 @@ class Hand:
             elif card.rank in ['2', '3', '4', '5', '6', '7', '8', '9', '10']:
                 total += int(card.rank)
             elif card.rank == 'A':
-                if total < 10:
+                if total <= 10:
                     total += 11
                 else:
                     total += 1

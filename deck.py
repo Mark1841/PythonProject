@@ -3,15 +3,11 @@ import random
 from card import Card
 
 class Deck:
-    def __init__(self):
-        self.cards = []
+    suits = ['Hearts', 'Diamonds', 'Spades', 'Clubs']
+    ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 
-    def build(self):
-        suits = ['Hearts', 'Diamonds', 'Spades', 'Clubs']
-        ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
-        for suit in suits:
-            for rank in ranks:
-                self.cards.append(Card(rank, suit))
+    def __init__(self):
+        self.cards = [Card(rank, suit) for rank in self.ranks for suit in self.suits]
 
     def shuffle(self):
         random.shuffle(self.cards)

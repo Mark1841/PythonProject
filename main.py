@@ -1,5 +1,6 @@
 from deck import Deck
 from player import Player
+from dealer import Dealer
 
 """
 Blackjack rules:
@@ -15,10 +16,8 @@ Picture cards count as 10, Ace can be 1 or 11, all other cards are face value
 
 
 if __name__ == '__main__':
-    my_deck = Deck()
-    my_deck.build()
-
-    my_deck.shuffle()
+    deck = Deck()
+    deck.shuffle()
 
     def check_winner():
         if player_one.hand.value > dealer.hand.value and not player_one.bust or dealer.bust:
@@ -26,21 +25,20 @@ if __name__ == '__main__':
         else:
             return dealer.name
 
-
     player_one = Player("Mark")
-    dealer = Player("Dealer")
+    dealer = Dealer()
 
     # Deal the initial two cards
     for deal in range (2):
-        player_one.hand.add_card(my_deck.deal())
-        dealer.hand.add_card(my_deck.deal())
+        player_one.hand.add_card(deck.deal())
+        dealer.hand.add_card(deck.deal())
 
     # Player and Dealer take turns
-    player_one.take_turn(my_deck)
+    player_one.take_turn(deck)
     if player_one.bust:
         print(f'{player_one.name}, sorry you went bust!!')
     else:
-        dealer.take_turn(my_deck)
+        dealer.take_turn(deck)
 
     #Display Winner
     print(f'Winner:  {check_winner()}')

@@ -15,7 +15,7 @@ class Player:
     def name(self, name):
         self._name = name.upper()
 
-    def take_turn(self, my_deck):
+    def take_turn(self, deck):
         turn_over = False
 
         while not turn_over:
@@ -24,7 +24,7 @@ class Player:
             option = input()
 
             if option == '1':
-                self.hand.add_card(my_deck.deal())
+                self.hand.add_card(deck.deal())
                 if self.hand.value > 21:
                     turn_over = True
                     self.bust = True
